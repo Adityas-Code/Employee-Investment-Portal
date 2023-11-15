@@ -1,0 +1,80 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode =='over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+  
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
+    <h4 class="name">{{EmpObj.name}}</h4>
+    <p class="designation">Employee</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/EmployeeDashboard">
+      <!-- <mat-icon>home</mat-icon> -->
+      <span>Home</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/EditEmployee">
+      <!-- <span class="icon-container">
+        <mat-icon>person</mat-icon>
+      </span> -->
+      
+      <span class="menu-button-text">Edit Details</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/InvestmentPlan">
+      <!-- <mat-icon>info</mat-icon> -->
+      <span>Investment</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/">
+      <!-- <mat-icon>help</mat-icon> -->
+      <span>Logout</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <!-- Plan Status -->
+      <div class="plan-status">
+        <h4><b>Welcome {{EmpObj.name}}!</b></h4>
+        <small>Employee at MarshMcLennan</small>
+        <br><br>
+        <h4><b>Investment Plan Status</b></h4>
+        <ul class="tabs">
+          <li class="active-tab">Current Plans</li>
+          <li>Plan History</li>
+        </ul>
+
+        <div class="current-plans">
+          <div class="plan">
+            <h4><b>Employee Contribution Plan</b></h4>
+            <p>Status: <span class="status-approved">Approved</span></p>
+            <!-- Use a span with class -->
+            <p>Application Date: 01/01/2023</p>
+            <button class="details-button">View Details</button>
+          </div>
+          <!-- Add more plan entries here -->
+        </div>
+
+        <div class="plan-history">
+          <div class="plan">
+            <h4><b>Company Contribution Plan</b></h4>
+            <p>Status: <span class="status-pending">Pending</span></p>
+            <!-- Use a span with class -->
+            <p>Application Date: 01/01/2022</p>
+            <p><button class="details-button">View Details</button></p>
+          </div>
+          <!-- Add more plan entries here -->
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

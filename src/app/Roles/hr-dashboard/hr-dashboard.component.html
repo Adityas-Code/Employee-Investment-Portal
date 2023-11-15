@@ -1,0 +1,359 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode == 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <img
+      class="avatar mat-elevation-z8"
+      src="C:\Users\u1306023\Downloads\Course\Project\download.png"
+    />
+    <h4 class="name"></h4>
+    <p class="designation">Human Resources</p>
+
+    <mat-divider></mat-divider>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/HrDashboard"
+    >
+      <!-- <mat-icon>home</mat-icon> -->
+      <span>Home</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/BulkUpload"
+    >
+      <!-- <span class="icon-container">
+          <mat-icon>person</mat-icon>
+        </span> -->
+
+      <span class="menu-button-text">Upload Data</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/HrInvestmentStatus"
+    >
+      <!-- <mat-icon>info</mat-icon> -->
+      <span>Investments</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/">
+      <!-- <mat-icon>help</mat-icon> -->
+      <span>Logout</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <!-- Plan Status -->
+
+
+      <div class="container">
+        <div class="dropdown">
+          <button
+            class="btn btn-primary dropdown-toggle"
+            type="button"
+            id="plansDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            (click)="showTable = !showTable"
+          >
+            Plans Enrolled
+          </button>
+        </div>
+
+        <table class="table" *ngIf="showTable">
+          <thead>
+            <tr>
+              <th>Plan Name</th>
+              <th>Duration</th>
+              <th>Number of Employees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let plan of investmentPlans">
+              <tr>
+                <td>{{ getPlanName(plan.planId) }}</td>
+                <td>{{ plan.duration }} Yrs</td>
+                <td>{{ plan.numEmployees }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+
+        <h2>Drill Down Report</h2>
+        <p>Showing {{ filteredCount }} results</p>
+
+        <div class="dropdown">
+          <button
+            class="btn btn-primary dropdown-toggle"
+            type="button"
+            id="filtersDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Filters
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="filtersDropdown">
+            <li>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="gradeCategory"
+                [(ngModel)]="showGradeCategory"
+                (change)="filterData()"
+              />
+              <label class="form-check-label" for="gradeCategory"
+                >Grade Category</label
+              >
+            </li>
+            <li *ngIf="showGradeCategory">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showGradeA"
+                  [(ngModel)]="showGradeA"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showGradeA">A</label>
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showGradeB"
+                  [(ngModel)]="showGradeB"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showGradeB">B</label>
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showGradeC"
+                  [(ngModel)]="showGradeC"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showGradeC">C</label>
+              </div>
+            </li>
+            <li>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="genderCategory"
+                [(ngModel)]="showGenderCategory"
+                (change)="filterData()"
+              />
+              <label class="form-check-label" for="genderCategory"
+                >Gender Category</label
+              >
+            </li>
+            <li *ngIf="showGenderCategory">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showGenderF"
+                  [(ngModel)]="showGenderF"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showGenderF">F</label>
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showGenderM"
+                  [(ngModel)]="showGenderM"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showGenderM">M</label>
+              </div>
+            </li>
+            <li>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="planCategory"
+                [(ngModel)]="showPlanCategory"
+                (change)="filterData()"
+              />
+              <label class="form-check-label" for="planCategory"
+                >Plan Category</label
+              >
+            </li>
+            <li *ngIf="showPlanCategory">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showPlanId1"
+                  [(ngModel)]="showPlanId1"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showPlanId1"
+                  >Employee Contribution Plan(1)</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showPlanId2"
+                  [(ngModel)]="showPlanId2"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showPlanId2"
+                  >Company Contribution Plan(2)</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showPlanId3"
+                  [(ngModel)]="showPlanId3"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showPlanId3"
+                  >Retirement Plan(3)</label
+                >
+              </div>
+            </li>
+            <li>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="ageCategory"
+                [(ngModel)]="showAgeCategory"
+                (change)="filterData()"
+              />
+              <label class="form-check-label" for="ageCategory"
+                >Age Category</label
+              >
+            </li>
+            <li *ngIf="showAgeCategory">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showAgeUnder30"
+                  [(ngModel)]="showAgeUnder30"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showAgeUnder30"
+                  >Under 30</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showAge31to40"
+                  [(ngModel)]="showAge31to40"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showAge31to40"
+                  >31-40</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showAge41to50"
+                  [(ngModel)]="showAge41to50"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showAge41to50"
+                  >41-50</label
+                >
+              </div>
+
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showAge51to60"
+                  [(ngModel)]="showAge51to60"
+                  (change)="filterData()"
+                />
+                <label class="form-check-label" for="showAge51to60"
+                  >51-60</label
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Employee ID</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th *ngIf="showGenderF || showGenderM">Gender</th>
+              <th *ngIf="showGradeA || showGradeB || showGradeC">Grade</th>
+              <th *ngIf="showPlanId1 || showPlanId2 || showPlanId3">Plan ID</th>
+              <th>Status ID</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let employee of drillDownData">
+              <tr>
+                <td>{{ employee.employeeID }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.age }}</td>
+                <td *ngIf="showGenderF || showGenderM">
+                  {{ employee.gender }}
+                </td>
+                <td *ngIf="showGradeA || showGradeB || showGradeC">
+                  {{ employee.grade }}
+                </td>
+                <td *ngIf="showPlanId1 || showPlanId2 || showPlanId3">
+                  {{ employee.planID }}
+                </td>
+                <td>{{ employee.statusID }}</td>
+                <td>{{ employee.startDate }}</td>
+                <td>{{ employee.endDate }}</td>
+                <td>{{ employee.duration }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

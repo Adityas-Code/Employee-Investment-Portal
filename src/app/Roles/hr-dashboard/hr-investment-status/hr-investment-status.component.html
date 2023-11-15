@@ -1,0 +1,96 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode =='over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
+    
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav">
+      <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
+      <h4 class="name"></h4>
+      <p class="designation">Human Resources</p>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrDashboard">
+        <!-- <mat-icon>home</mat-icon> -->
+        <span>Home</span>
+      </button>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/BulkUpload">
+        <!-- <span class="icon-container">
+          <mat-icon>person</mat-icon>
+        </span> -->
+        
+        <span class="menu-button-text">Upload Data</span>
+      </button>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrInvestmentStatus">
+        <!-- <mat-icon>info</mat-icon> -->
+        <span>Investments</span>
+      </button>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLink="/">
+        <!-- <mat-icon>help</mat-icon> -->
+        <span>Logout</span>
+      </button>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <!-- Plan Status -->
+
+        <h3><b>Plans Enrolled By Employees</b></h3>
+
+        <mat-divider></mat-divider>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Emp ID</th>
+                        <th>Name</th>
+                        <th>Plan Name</th>
+                        <th>Plan Duration</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr *ngFor="let request of pendingRequest">
+                        <td>{{request.employeeID}}</td>
+                        <td>{{request.name}}</td>
+                        <td>{{request.planName}}</td>
+                        <td>{{request.duration}}<p>years</p></td>
+                        <td>
+                            <ng-container *ngIf="request.statusID === 1">
+                                <td><p><span class="badge bg-success text-light">{{request.statusName}}</span></p></td>
+                            </ng-container>
+                            <ng-container *ngIf="request.statusID === 2">
+                                <td><p><span class="badge bg-warning text-dark">{{request.statusName}}</span></p></td>
+                            </ng-container>
+                            <ng-container *ngIf="request.statusID === 3">
+                                <td><p><span class="badge bg-danger text-light">{{request.statusName}}</span></p></td>
+                            </ng-container>
+                        <td>
+                            <button (click)="takeAction(request.employeeID, request.planID, request.employeeInvestmentID)">View</button>
+                        </td>
+                        
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <!-- asasas-->
+

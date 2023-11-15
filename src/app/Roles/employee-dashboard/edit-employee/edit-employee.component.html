@@ -1,0 +1,101 @@
+
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode =='over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+  
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
+    <h4 class="name">{{EmpObj.name}}</h4>
+    <p class="designation">Employee</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/EmployeeDashboard">
+      <!-- <mat-icon>home</mat-icon> -->
+      <span>Home</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/EditEmployee">
+      <!-- <span class="icon-container">
+        <mat-icon>person</mat-icon>
+      </span> -->
+      
+      <span class="menu-button-text">Edit Details</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/InvestmentPlan">
+      <!-- <mat-icon>info</mat-icon> -->
+      <span>Investments</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/">
+      <!-- <mat-icon>help</mat-icon> -->
+      <span>Logout</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <!-- Plan Status -->
+      <div class="container">
+        <div class="card-container">
+          <div class="card personal-details">
+            <div class="card-header">
+              <h3><b>Employee Detail</b></h3>
+            </div>
+            <div class="card-body">
+              <div *ngIf="!editingMode; else editSection">
+                <p>Name: {{ EmpObj.name }}</p>
+                <p>Email: {{ EmpObj.email }}</p>
+                <p>Age: {{ EmpObj.age }}</p>
+                <p>Gender: {{ EmpObj.gender }}</p>
+                <p>Department: {{ EmpObj.department }}</p>
+                <p>Contact Details: {{ EmpObj.contactDetails }}</p>
+                <p>Grade: {{ EmpObj.grade }}</p>
+                <p>Salary: {{ EmpObj.salary }}</p>
+      
+                <button class="btn btn-primary" (click)="editDetails()">
+                  Edit Details
+                </button>
+              </div>
+      
+              <ng-template #editSection class="sliding">
+                <div>
+                  <p>Name: <input type="text" [(ngModel)]="EmpObj.name" /></p>
+                  <p>Email: <input type="text" [(ngModel)]="EmpObj.email" /></p>
+                  <p>Age: <input type="text" [(ngModel)]="EmpObj.age" /></p>
+                  <p>Gender: <input type="text" [(ngModel)]="EmpObj.gender" /></p>
+                  <p>
+                    Department: <input type="text" [(ngModel)]="EmpObj.department" />
+                  </p>
+                  <p>
+                    Contact Details:
+                    <input type="text" [(ngModel)]="EmpObj.contactDetails" />
+                  </p>
+                  <p>Grade: <input type="text" [(ngModel)]="EmpObj.grade" /></p>
+                  <p>Salary: <input type="text" [(ngModel)]="EmpObj.salary" /></p>
+                  <button class="btn btn-success" (click)="updateEmployeeDetails()">
+                    Save
+                  </button>
+                </div>
+              </ng-template>
+              <br>
+              <div *ngIf="showNotification" class="notification fade-in-out">
+                Details edited successfully
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

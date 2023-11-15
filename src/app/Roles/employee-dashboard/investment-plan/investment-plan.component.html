@@ -1,0 +1,188 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode == 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <img
+      class="avatar mat-elevation-z8"
+      src="C:\Users\u1306023\Downloads\Course\Project\download.png"
+    />
+    <h4 class="name">{{ EmpObj.name }}</h4>
+    <p class="designation">Employee</p>
+
+    <mat-divider></mat-divider>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/EmployeeDashboard"
+    >
+      <!-- <mat-icon>home</mat-icon> -->
+      <span>Home</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/EditEmployee"
+    >
+      <!-- <span class="icon-container">
+        <mat-icon>person</mat-icon>
+      </span> -->
+
+      <span class="menu-button-text">Edit Details</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/InvestmentPlan"
+    >
+      <!-- <mat-icon>info</mat-icon> -->
+      <span>Investments</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/">
+      <!-- <mat-icon>help</mat-icon> -->
+      <span>Logout</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <!-- Plan Status -->
+      <h2><b>Plans Available</b></h2>
+      <mat-divider></mat-divider>
+      <div class="card-container">
+        <!-- <div class="card">
+          <h2 class="card-title">Company Contribution Plan</h2>
+          <p class="card-details">
+            Designed to reward your hard work and dedication. As part of this
+            plan, we match a percentage of your salary and contribute it towards
+            your long-term financial goals.
+          </p>
+          <label for="planDuration">Choose Plan Duration</label>
+          <select
+            id="planDuration"
+            name="planDuration"
+            [(ngModel)]="duration"
+            required
+          >
+            <option value="" disabled selected>Select Duration</option>
+
+            <option value="2">2 years</option>
+            <option value="3">3 years</option>
+            <option value="5">5 years</option>
+          </select>
+
+          <button
+            class="enroll-button float-bottom"
+            (click)="enroll(1, duration)"
+          >
+            Enroll
+          </button>
+        </div> -->
+
+        
+
+          <div class="card" *ngFor="let plan of investmentPlans; let i = index">
+            <h2 class="card-title">{{ plan.planName }}</h2>
+            <p class="card-details">{{ plan.planDetail }}</p>
+
+            <label for="planDuration{{i}}">Choose Plan Duration</label>
+            <select
+              id="planDuration{{i}}"
+              name="planDuration{{i}}"
+              [(ngModel)]="durations[i]"
+              required
+            >
+              <option value="" disabled selected>Select Duration</option>
+              <option value="2">2 years</option>
+              <option value="3">3 years</option>
+              <option value="5">5 years</option>
+            </select>
+
+
+
+            <button
+              class="enroll-button float-bottom"
+              (click)="enroll(plan.planID, durations[i])"
+            >
+              Enroll
+            </button>
+          </div>
+
+        
+
+        <!-- <div class="card">
+          <h2 class="card-title">Employee Contribution Plan</h2>
+          <p class="card-details">
+            Take control of your financial future with our Employee Contribution
+            Plan. This plan empowers you to invest a portion of your salary
+            towards long-term goals.
+          </p>
+          <label for="planDuration">Choose Plan Duration</label>
+          <select
+            id="planDuration"
+            name="planDuration"
+            [(ngModel)]="duration"
+            required
+          >
+            <option value="" disabled selected>Select Duration</option>
+            <option value="2">2 years</option>
+            <option value="3">3 years</option>
+            <option value="5">5 years</option>
+          </select>
+
+          <button
+            class="enroll-button float-bottom"
+            (click)="enroll(2, duration)"
+          >
+            Enroll
+          </button>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Retirement Plan</h2>
+          <p class="card-details">
+            With a range of investment options, personalized advice, and expert
+            guidance, our Retirement Plan equips you with the tools you need for
+            a worry-free retirement.
+          </p>
+          <label for="planDuration">Choose Plan Duration</label>
+          <select
+            id="planDuration"
+            name="planDuration"
+            [(ngModel)]="duration"
+            required
+          >
+            <option value="" disabled selected>Select Duration</option>
+            <option value="2">2 years</option>
+            <option value="3">3 years</option>
+            <option value="5">5 years</option>
+          </select>
+
+          <button
+            class="enroll-button float-bottom"
+            (click)="enroll(3, duration)"
+          >
+            Enroll
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

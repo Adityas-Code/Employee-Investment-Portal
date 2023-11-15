@@ -1,0 +1,93 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode =='over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
+    
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav">
+      <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+      <h4 class="name"></h4>
+      <p class="designation">Human Resources</p>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrDashboard">
+        <!-- <mat-icon>home</mat-icon> -->
+        <span>Home</span>
+      </button>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/BulkUpload">
+        <!-- <span class="icon-container">
+          <mat-icon>person</mat-icon>
+        </span> -->
+        
+        <span class="menu-button-text">Upload Data</span>
+      </button>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrInvestmentStatus">
+        <!-- <mat-icon>info</mat-icon> -->
+        <span>Investments</span>
+      </button>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLink="/">
+        <!-- <mat-icon>help</mat-icon> -->
+        <span>Logout</span>
+      </button>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <!-- Plan Status -->
+
+        <h3><b>Select file</b></h3>
+        <div class="upload-container">
+            
+            <label for="fileInput">Choose File</label>
+            <input type="file" id="fileInput" (change)="onFileSelected($event)">
+            <button (click)="uploadFile()">Upload</button>
+        </div>
+        <div class="card-header">
+            <h4><b>Employee Details</b></h4>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Contact Details</th>
+                        <th>Grade</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees">
+                        <td>{{ employee.employeeID }}</td>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.age }}</td>
+                        <td>{{ employee.gender }}</td>
+                        <td>{{ employee.department }}</td>
+                        <td>{{ employee.contactDetails }}</td>
+                        <td>{{ employee.grade }}</td>
+                        <td>{{ employee.salary }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+

@@ -1,0 +1,149 @@
+mat-toolbar{
+    background: #002b5c;;
+    color: white;
+    height: 20px;
+  }
+  
+  .dashboard-title{
+    font-size : 1.2rem;
+    margin-left: 1px;
+  }
+  
+  mat-sidenav{
+    /* making changes to cover entire vertical height */
+    margin: 0;
+    width: 200px;
+    height: 100vh;
+    border-right: none;
+    background: #002b5c;
+    color:white;
+    border-radius: 0; /*for no curve edges*/
+    padding: 16px;
+    text-align: center;
+  
+  }
+  
+  .content{
+    /* making changes to cover entire vertical height */
+    height: 100vh;
+    border-radius: 10px;
+    margin: 16px;
+    margin-left: 32px;
+    padding: 16px;
+    overflow: auto;
+  
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    font-size: 2rem;
+    color: lightgray; */
+  
+     /*for no curve edges*/
+  }
+  
+  mat-sidenav-container{
+    /* making changes to cover entire vertical height */
+    height: 100vh;
+  }
+  
+  .menu-button{
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+    transition: background-color 0.3s ease; /* Smooth transition effect on hover */
+  
+    mat-icon{
+        margin-right: 8px;
+    }
+  }
+  
+  .icon-container {
+    margin-right: 8px; /* Adjust the margin as needed to separate the icon and text */
+  }
+  
+  .menu-button:hover {
+    background-color: #555; /* Button background color on hover */
+  }
+  
+  .menu-button .menu-button-text {
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide any overflow text */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+    
+  }
+  
+  .avatar{
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  .name{
+    margin-top: 8px;
+    font-weight: normal;
+  }
+  .designation{
+    margin-top: 2px;
+    font-size: 0.7rem;
+    color:lightgray
+  }
+  
+  mat-divider{
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /*asasasa*/
+  .table {
+    margin-top: 20px;
+  }
+ 
+  /* Add custom styles to the checkboxes */
+  .form-check-label {
+    margin-left: 5px;
+  }
+ 
+  /* Add custom styles to the drill down report section */
+  h2 {
+    margin-top: 20px;
+  }
+ 
+  p {
+    font-weight: bold;
+  }
+ 
+  /* Add custom styles to the form-check section */
+  .form-check {
+    margin-bottom: 10px;
+  }
+ 
+  /* Add custom styles to the dropdown */
+  .dropdown {
+    margin-bottom: 20px;
+  }
+ 
+  .dropdown-toggle {
+    background-color: #007bff;
+    color: #fff;
+  }
+ 
+  .dropdown-menu {
+    background-color: #f8f9fa;
+  }
+ 
+  .dropdown-item {
+    color: #000;
+  }
+ 
+  .table th {
+    background-color: #007bff;
+    color: #fff;
+  }
+ 
+  .table td {
+    background-color: #f8f9fa;
+  }

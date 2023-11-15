@@ -1,0 +1,124 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode == 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <img
+      class="avatar mat-elevation-z8"
+      src="C:\Users\u1306023\Downloads\Course\Project\download.png"
+    />
+    <h4 class="name"></h4>
+    <p class="designation">Admin</p>
+
+    <mat-divider></mat-divider>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/AdminDashboard"
+    >
+      <!-- <mat-icon>home</mat-icon> -->
+      <span>Home</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/ManageUserAndRoles"
+    >
+      <!-- <span class="icon-container">
+          <mat-icon>person</mat-icon>
+        </span> -->
+
+      <span class="menu-button-text">Manage Users</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/ManageEmployeeInvestments"
+    >
+      <!-- <mat-icon>info</mat-icon> -->
+      <span>Investments</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/">
+      <!-- <mat-icon>help</mat-icon> -->
+      <span>Logout</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <!-- Plan Status -->
+
+      <h3><b>Investment Plans Available</b></h3>
+      <div class="investment-plans">
+        <div class="plan" *ngFor="let plan of investmentPlans">
+          <h3>
+            <b>{{ plan.planName }}</b>
+          </h3>
+          <p>{{ plan.planDetail }}</p>
+          <!-- <button class="publish-button">Publish for employee</button> -->
+        </div>
+      </div>
+
+      <button class="publish-button" (click)="toggleFormVisibility()">
+        Add Investment Plan
+      </button>
+      <!--want the form to be displayed here when the user clicks on the above button and disappear when the user clicks submit-->
+     
+      <div *ngIf="isFormVisible" class="add-investment-form">
+        
+          <h2>Add Investment Plan</h2>
+          <form #newPlanForm="ngForm" (ngSubmit)="handlePlanSubmitted()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group col-md-12">
+                  <label for="newPlanName">New Plan Name:</label>
+                  <input
+                    type="text"
+                    id="newPlanName"
+                    name="newPlanName"
+                    [(ngModel)]="newPlanName"
+                    required
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="form-group col-md-12">
+                  
+                  <label for="newPlanDetail">New Plan Detail:</label>
+                  <textarea
+                    id="newPlanDetail"
+                    name="newPlanDetail"
+                    [(ngModel)]="newPlanDetail"
+                    required
+                    class="form-control"
+                  ></textarea>
+
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        
+      </div>
+      
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

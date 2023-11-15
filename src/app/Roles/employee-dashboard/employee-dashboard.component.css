@@ -1,0 +1,192 @@
+/* nav.sidebar {
+  height: 100%;
+  width: 240px; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 20px;
+  background-color: #343a40; 
+}
+ 
+nav.sidebar ul.nav.flex-column {
+  padding-left: 15px; 
+}
+ 
+nav.sidebar a.nav-link {
+  color: #ffffff; 
+}
+ 
+nav.sidebar a.nav-link.active {
+  background-color: #007bff; 
+  color: #ffffff; 
+}
+ 
+
+main {
+  margin-top: 60px;
+  padding: 15px;
+} */
+
+
+mat-toolbar{
+  background: #002b5c;;
+  color: white;
+  height: 20px;
+}
+
+.dashboard-title{
+  font-size : 1.2rem;
+  margin-left: 1px;
+}
+
+mat-sidenav{
+  /* making changes to cover entire vertical height */
+  margin: 0;
+  width: 200px;
+  height: 100vh;
+  border-right: none;
+  background: #002b5c;
+  color:white;
+  border-radius: 0; /*for no curve edges*/
+  padding: 16px;
+  text-align: center;
+
+}
+
+.content{
+  /* making changes to cover entire vertical height */
+  height: calc(100vh - 130px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+  padding: 16px;
+  overflow: auto;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
+  color: lightgray; */
+
+   /*for no curve edges*/
+}
+
+mat-sidenav-container{
+  /* making changes to cover entire vertical height */
+  height: 100vh;
+}
+
+.menu-button{
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  transition: background-color 0.3s ease; /* Smooth transition effect on hover */
+  color:lightgray
+
+  mat-icon{
+      margin-right: 8px;
+  }
+}
+
+.icon-container {
+  margin-right: 8px; /* Adjust the margin as needed to separate the icon and text */
+}
+
+.menu-button:hover {
+  background-color: #555; /* Button background color on hover */
+}
+
+.menu-button .menu-button-text {
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide any overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+  
+}
+
+.avatar{
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.name{
+  margin-top: 8px;
+  font-weight: normal;
+}
+.designation{
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color:lightgray
+}
+
+mat-divider{
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+
+/* asasas */
+.details-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+ 
+ .details-button:hover {
+    background-color:#4CAF50;
+  }
+  
+.plan {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+  }
+ 
+  .tabs {
+    list-style: none;
+    display: flex;
+  }
+ 
+  .tabs li {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+ 
+  .active-tab {
+    background-color:#4CAF50;
+    color: #fff;
+  }
+ 
+  .tab-content {
+    display: none;
+  }
+ 
+.tab-content.active-tab {
+    display: block;
+  }
+ 
+  .status-approved {
+    color: green; /* Use green for approved status */
+    font-weight: bold;
+  }
+ 
+  .status-denied {
+    color: red; /* Use red for denied status */
+    font-weight: bold;
+  }
+ 
+  .status-pending {
+    color: grey; /* Use orange for pending status */
+    font-weight: bold;
+  }

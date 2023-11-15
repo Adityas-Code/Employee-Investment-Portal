@@ -1,0 +1,81 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode =='over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
+    
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav">
+      <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
+      <h4 class="name"></h4>
+      <p class="designation">Human Resources</p>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrDashboard">
+        <!-- <mat-icon>home</mat-icon> -->
+        <span>Home</span>
+      </button>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/BulkUpload">
+        <!-- <span class="icon-container">
+          <mat-icon>person</mat-icon>
+        </span> -->
+        
+        <span class="menu-button-text">Upload Data</span>
+      </button>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrInvestmentStatus">
+        <!-- <mat-icon>info</mat-icon> -->
+        <span>Investments</span>
+      </button>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLink="/">
+        <!-- <mat-icon>help</mat-icon> -->
+        <span>Logout</span>
+      </button>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <!-- Plan Status -->
+
+        <div class="container">
+            <div class="card-container">
+                <div class="card personal-details">
+                    <div class="card-header">
+                        <h2>Employee Investment</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Employee ID: {{this.employeeID}}</p>
+                        <p>Name: {{this.employee.name}}</p>
+                        <p>Age: {{this.employee.age}}</p>
+                        <p>Gender: {{this.employee.gender}}</p>
+                        <p>Department: {{this.employee.department}}</p>
+                        <p>Contact Details: {{this.employee.contactDetails}}</p>
+                        <p>Grade: {{this.employee.grade}}</p>
+                        <p>Salary: {{this.employee.salary}}</p>
+                        <p>Plan Name: {{this.planDetails.planName}}</p>
+                        <p>Start Date: {{this.employeeInvestment.startDate}}</p>
+                        <p>End Date: {{this.employeeInvestment.endDate}}</p>
+                        
+                        <button class="btn btn-primary btn1" (click)="approveInvestmentPlan()">Approve</button> <!-- Add the btn class -->
+                        
+                        <button class="btn btn-primary btn1" (click)="declineInvestmentPlan()">Decline</button>
+                        
+                        <button class="btn btn-primary" routerLinkActive="active" routerLink="/HrInvestmentStatus">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+<br>

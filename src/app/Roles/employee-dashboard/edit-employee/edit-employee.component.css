@@ -1,0 +1,143 @@
+mat-toolbar{
+  background: #002b5c;;
+  color: white;
+  height: 20px;
+}
+
+mat-sidenav{
+  /* making changes to cover entire vertical height */
+  margin: 0;
+  width: 200px;
+  height: 100vh;
+  border-right: none;
+  background: #002b5c;
+  color:white;
+  border-radius: 0; /*for no curve edges*/
+  padding: 16px;
+  text-align: center;
+
+}
+
+.content{
+  /* making changes to cover entire vertical height */
+  height: calc(100vh - 130px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+  padding: 16px;
+  overflow: auto;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
+  color: lightgray; */
+
+   /*for no curve edges*/
+}
+
+mat-sidenav-container{
+  /* making changes to cover entire vertical height */
+  height: 100vh;
+}
+
+.menu-button{
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  transition: background-color 0.3s ease; /* Smooth transition effect on hover */
+
+  mat-icon{
+      margin-right: 8px;
+  }
+}
+
+.icon-container {
+  margin-right: 8px; /* Adjust the margin as needed to separate the icon and text */
+}
+
+.menu-button:hover {
+  background-color: #555; /* Button background color on hover */
+}
+
+.menu-button .menu-button-text {
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide any overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+  
+}
+
+.avatar{
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.name{
+  margin-top: 8px;
+  font-weight: normal;
+}
+.designation{
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color:lightgray
+}
+
+mat-divider{
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+/* asa */
+.card.personal-details {
+    transition: height 0.5s ease-in-out;
+    overflow: hidden;
+  }
+ 
+  .card.personal-details.expanded {
+    height: auto;
+  }
+ 
+  .sliding {
+    animation: slideIn 0.5s forwards;
+  }
+ 
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+ 
+  .notification {
+   background-color: #6cac5c;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  opacity: 0;
+  animation: fade-in-out 3s ease-in-out;
+  }
+ 
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

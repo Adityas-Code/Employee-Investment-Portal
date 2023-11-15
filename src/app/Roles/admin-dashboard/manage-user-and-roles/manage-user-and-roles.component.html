@@ -1,0 +1,158 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode =='over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button>
+  
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav">
+    <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
+    <h4 class="name"></h4>
+    <p class="designation">Admin</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/AdminDashboard">
+      <!-- <mat-icon>home</mat-icon> -->
+      <span>Home</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/ManageUserAndRoles">
+      <!-- <span class="icon-container">
+        <mat-icon>person</mat-icon>
+      </span> -->
+      
+      <span class="menu-button-text">Manage Users</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/ManageEmployeeInvestments">
+      <!-- <mat-icon>info</mat-icon> -->
+      <span>Investments</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/">
+      <!-- <mat-icon>help</mat-icon> -->
+      <span>Logout</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <!-- Plan Status -->
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Login ID</th>
+              <th>Role ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Password</th>
+              <!-- <th>Department</th> -->
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let login of logins">
+              <td>{{ login.loginID }}</td>
+              <td>{{ login.roleID }}</td>
+              <td>{{ login.username }}</td>
+              <td>{{ login.email }}</td>
+              <td>{{ login.password }}</td>
+              <!-- <td>{{login.department}}</td> -->
+              <td>
+                <button type="button" class="btn btn" (click)="editLogin(login)">
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="delete-button"
+                  (click)="deleteLogin(login.loginID)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <div *ngIf="selectedLogin">
+          <div class="edit-login-form">
+            <h2>Edit Login</h2>
+            <form (submit)="updateLogin()">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group col-md-12">
+                    <label for="roleID">Role:</label>
+                    <select
+                      id="roleID"
+                      name="roleID"
+                      class="form-control"
+                      [(ngModel)]="selectedLogin.roleID"
+                      required
+                    >
+                      <option *ngFor="let role of allowedRoles" [value]="role.id">
+                        {{ role.name }}
+                      </option>
+                    </select>
+                  </div>
+      
+                  <div class="form-group col-md-12">
+                    <label for="username">Username:</label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      class="form-control"
+                      [(ngModel)]="selectedLogin.username"
+                      required
+                    />
+                  </div>
+      
+                  <div class="form-group col-md-12">
+                    <label for="email">Email:</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      [(ngModel)]="selectedLogin.email"
+                      required
+                    />
+                  </div>
+      
+                  <div class="form-group col-md-12">
+                    <label for="password">Password:</label>
+                    <input
+                      type="text"
+                      id="password"
+                      name="password"
+                      class="form-control"
+                      [(ngModel)]="selectedLogin.password"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- {
+    asasasas
+  } -->
+

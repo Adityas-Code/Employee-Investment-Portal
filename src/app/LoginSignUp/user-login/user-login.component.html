@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-left mt-5">
+
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+      <form #signupForm="ngForm" (ngSubmit)="onSignUp()" novalidate>
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" name="userName" placeholder="User name" [(ngModel)]="signupObj.userName" required>
+        <div *ngIf="signupForm.controls['userName'].invalid && (signupForm.controls['userName'].dirty || signupForm.controls['userName'].touched)">
+          <div *ngIf="signupForm.controls['userName'].hasError('required')" class="error-message">User name is required.</div>
+        </div>
+
+
+        <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.email" required>
+        <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
+          <div *ngIf="signupForm.controls['email'].hasError('required')" class="error-message">Email is required.</div>
+          <div *ngIf="signupForm.controls['email'].hasError('email')" class="error-message">Invalid email format.</div>
+        </div>
+        
+        
+        <input type="password" name="password" placeholder="Password" [(ngModel)]="signupObj.password" required>
+        <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
+          <div *ngIf="signupForm.controls['password'].hasError('required')" class="error-message">Password is required.</div>
+        </div>
+        <!-- <select name="role" [(ngModel)]="signupObj.roleID" required>
+          <option value="" disabled selected>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="hr">HR</option>
+          <option value="employee">Employee</option>
+        </select> -->
+        <button type="submit" [disabled]="signupForm.invalid">Sign up</button>
+      </form>
+    </div>
+
+    <div class="login">
+      <form>
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="email" name="email" placeholder="Email" [(ngModel)]="loginObj.email" required>
+        <input type="password" name="password" placeholder="Password" [(ngModel)]="loginObj.password" required>
+        <!-- <select name="role" [(ngModel)]="loginObj.roleID" required>
+          <option value="" disabled selected>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="hr">HR</option>
+          <option value="employee">Employee</option>
+        </select> -->
+        <button (click)="onLogin()">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <div class = "animation-line">
+    <p>Welcome to Employee Investment Portal</p>
+  </div>
+</div>
