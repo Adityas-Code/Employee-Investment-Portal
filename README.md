@@ -1,9 +1,9 @@
-Objective
+# Objective
 - Establish a seamless pathway that enables efficient management and enrollment of investment plans
 - Offer investment plans such as Company Contribution Plan, Employee Contribution Plan and Retirement Plan
 - Role based access for HR, Admin and Employee
 
-Features
+# Features
 1. Role Based Access - Admin can assign roles to the users and corresponding dashboard will open for them
 2. User Management - Admin can manage user login details, users can edit  their profiles
 3. Investment Plan Management - Admin can create, update, delete investment plans for employee
