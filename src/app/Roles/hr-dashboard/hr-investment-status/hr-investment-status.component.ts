@@ -23,8 +23,21 @@ export class HrInvestmentStatusComponent implements OnInit{
     statusID: 0,
     startDate:null,
     endDate:null,
-    duration: '',
+    duration: 0,
   }
+
+  EmpObj: any = {
+    employeeID: '',
+    name: '',
+    email: '',
+    age: '',
+    gender: '',
+    department: '',
+    contactDetails: '',
+    salary: '',
+  };
+
+  Employess: any[] = [];
 
     // "employeeID": 0,
     // "name": "string",
@@ -56,6 +69,20 @@ export class HrInvestmentStatusComponent implements OnInit{
 
 
   ngOnInit(): void {
+
+    this.roleservice.getEmployeeData().subscribe((result) =>{
+      this.Employess = result;
+
+      if(this.Employess != null){
+        const employee = this.Employess.find((e) => e.email == localStorage.getItem('email'));
+        this.EmpObj = employee;
+        console.log(employee);
+      }
+      
+    });
+
+
+
     this.roleservice.getEmployeeInvestementData().subscribe((result)=>{
       
       const requestWithDetails = result.map(async (request: any)=>{
@@ -70,22 +97,29 @@ export class HrInvestmentStatusComponent implements OnInit{
           name: employeeDetails.name, /* Add other fields as needed */
           planName: planDetails.planName,
           statusName: statusDetails.statusName,
+          
         };
-      });
+        
+      }
+      );
 
       Promise.all(requestWithDetails).then((finalRequest)=>{
         this.pendingRequest = finalRequest;
       });
     });
 
+    
+
+
+
 
 
   }
 
 
-  takeAction(employeeID:number, planID:number, employeeInvestmentID:number):void{
-    console.log('Navigating to EditEmployeePlan with:', employeeID, planID, employeeInvestmentID);
-    const url = `/EditEmployeePlan/${employeeID}/${planID}/${employeeInvestmentID}`;
+  takeAction(employeeID:number, planID:number, employeeInvestmentID:number, duration: number):void{
+    console.log('Navigating to EditEmployeePlan with:', employeeID, planID, employeeInvestmentID, duration);
+    const url = `/EditEmployeePlan/${employeeID}/${planID}/${employeeInvestmentID}/${duration}`;
     this.routes.navigateByUrl(url);
   }
  

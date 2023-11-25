@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgModel } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
+import { RoleServiceService } from '../role-service.service';
 
 @Component({
   selector: 'app-hr-dashboard',
@@ -12,6 +13,19 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class HrDashboardComponent implements OnInit {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+
+  EmpObj: any = {
+    employeeID: '',
+    name: '',
+    email: '',
+    age: '',
+    gender: '',
+    department: '',
+    contactDetails: '',
+    salary: '',
+  };
+
+  Employess: any[] = [];
 
   investmentPlans: any[] = [];
   employees: any[] = [];
@@ -35,7 +49,7 @@ export class HrDashboardComponent implements OnInit {
   filteredCount: number = 0;
   showTable: boolean = false;
 
-  constructor(private observer: BreakpointObserver, private http: HttpClient) {}
+  constructor(private observer: BreakpointObserver, private http: HttpClient, private roleservice: RoleServiceService) {}
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width : 800px)']).subscribe((res) => {
@@ -52,6 +66,27 @@ export class HrDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.fetchInvestmentPlans();
     this.fetchDrillDownData();
+
+    this.roleservice.getEmployeeData().subscribe((result) =>{
+      this.Employess = result;
+
+      if(this.Employess != null){
+        const employee = this.Employess.find((e) => e.email == localStorage.getItem('email'));
+        this.EmpObj = employee;
+        console.log(employee);
+      }
+      
+    });
+  }
+
+  formatDate(isoDateString: string){
+    const date = new Date(isoDateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2,'0');
+    const day = date.getDate().toString().padStart(2,'0');
+
+    return `${day}-${month}-${year}`;
+    
   }
 
   fetchInvestmentPlans() {

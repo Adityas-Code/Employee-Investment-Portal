@@ -15,6 +15,19 @@ export class ManageUserAndRolesComponent implements OnInit {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  EmpObj: any = {
+    employeeID: '',
+    name: '',
+    email: '',
+    age: '',
+    gender: '',
+    department: '',
+    contactDetails: '',
+    salary: '',
+  };
+
+  Employess: any[] = [];
+
   logins: any[] = [];
   selectedLogin:any;
   selectedEmployee:any;
@@ -44,6 +57,19 @@ export class ManageUserAndRolesComponent implements OnInit {
   
   ngOnInit(): void {
     this.fetchLogins();
+    this.fetchEmployeeDetails();
+
+    this.roleservice.getEmployeeData().subscribe((result) =>{
+      this.Employess = result;
+
+      if(this.Employess != null){
+        const employee = this.Employess.find((e) => e.email == localStorage.getItem('email'));
+        this.EmpObj = employee;
+        console.log(employee);
+      }
+      
+    });
+
   }
 
   fetchLogins():void{
@@ -109,11 +135,18 @@ export class ManageUserAndRolesComponent implements OnInit {
     
     this.logins = loginsData.map((login) => {
       const employee = employeesData.find((employee) => employee.email === login.email);
-      if (employee) {
+      if (employee != null) {
         login.department = employee.department;
+        
+      }else{
+        login.department = 'Not found';
       }
+      console.log('Employee department - ',employee.department);
       return login;
-    });
+    }
+    );
+
+    
     
   }
 

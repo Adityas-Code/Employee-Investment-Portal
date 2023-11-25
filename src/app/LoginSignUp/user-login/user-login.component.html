@@ -6,47 +6,84 @@
     <div class="signup">
       <form #signupForm="ngForm" (ngSubmit)="onSignUp()" novalidate>
         <label for="chk" aria-hidden="true">Sign up</label>
-        <input type="text" name="userName" placeholder="User name" [(ngModel)]="signupObj.userName" required>
-        <div *ngIf="signupForm.controls['userName'].invalid && (signupForm.controls['userName'].dirty || signupForm.controls['userName'].touched)">
-          <div *ngIf="signupForm.controls['userName'].hasError('required')" class="error-message">User name is required.</div>
+        
+        <input class="form-control" type="text" placeholder="Enter User name" name="userName" id="userName"  [(ngModel)]="signupObj.userName" required>
+        <div class="error text-danger" *ngIf="signupForm.controls['userName'].invalid && (signupForm.controls['userName'].dirty || signupForm.controls['userName'].touched)">
+          <div *ngIf="signupForm.controls['userName'].hasError('required')" class="error-message"><small>User name is required</small> </div>
         </div>
 
 
-        <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.email" required>
+        
+        <!-- <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.email" required>
         <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
           <div *ngIf="signupForm.controls['email'].hasError('required')" class="error-message">Email is required.</div>
           <div *ngIf="signupForm.controls['email'].hasError('email')" class="error-message">Invalid email format.</div>
+        </div> -->
+
+        <input class="form-control" type="text" placeholder="Enter Email" name="email" id="email" [(ngModel)]="signupObj.email" #signupEmailField="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+        <div class="error text-danger " *ngIf="(signupEmailField.touched || signupEmailField.dirty) && signupEmailField.invalid && signupEmailField.errors?.['required']" style="margin-top: 5px;">
+          <small >Email field is required</small>
+        </div>
+        <div class="error text-danger " *ngIf="(signupEmailField.touched || signupEmailField.dirty) && signupEmailField.invalid && signupEmailField.errors?.['pattern']">
+          <small>Provide correct email</small>
         </div>
         
         
-        <input type="password" name="password" placeholder="Password" [(ngModel)]="signupObj.password" required>
+        <!-- <input type="password" name="password" placeholder="Password" [(ngModel)]="signupObj.password" required>
         <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
           <div *ngIf="signupForm.controls['password'].hasError('required')" class="error-message">Password is required.</div>
+        </div> -->
+
+        <input type="password" placeholder="Enter Password" name="password" id="psw" [(ngModel)]="signupObj.password" #signupPasswordField="ngModel" minlength="4" required>
+        <div class="error text-danger " *ngIf="(signupEmailField.touched || signupEmailField.dirty) && signupPasswordField.invalid && signupPasswordField.errors?.['required']" style="margin-bottom: -1;">
+          <small >Password is required</small>
         </div>
-        <!-- <select name="role" [(ngModel)]="signupObj.roleID" required>
-          <option value="" disabled selected>Select Role</option>
-          <option value="admin">Admin</option>
-          <option value="hr">HR</option>
-          <option value="employee">Employee</option>
-        </select> -->
+        <div class="error text-danger " *ngIf="(signupEmailField.touched || signupEmailField.dirty) && signupPasswordField.invalid && signupPasswordField.errors?.['minlength']">
+          <small>Password should be 4 characters long</small>
+        </div>
+        
         <button type="submit" [disabled]="signupForm.invalid">Sign up</button>
       </form>
     </div>
 
-    <div class="login">
+    <!-- <div class="login">
       <form>
         <label for="chk" aria-hidden="true">Login</label>
+        
         <input type="email" name="email" placeholder="Email" [(ngModel)]="loginObj.email" required>
         <input type="password" name="password" placeholder="Password" [(ngModel)]="loginObj.password" required>
-        <!-- <select name="role" [(ngModel)]="loginObj.roleID" required>
-          <option value="" disabled selected>Select Role</option>
-          <option value="admin">Admin</option>
-          <option value="hr">HR</option>
-          <option value="employee">Employee</option>
-        </select> -->
+        
         <button (click)="onLogin()">Login</button>
       </form>
+    </div> -->
+
+    <div class="login">
+      <form #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
+
+        <label for="chk" aria-hidden="true">Login</label>
+        
+        <input class="form-control" type="text" placeholder="Enter Email" name="email" id="email" [(ngModel)]="loginObj.email" #loginEmailField="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+        <div class="error text-danger " *ngIf="(loginEmailField.touched || loginEmailField.dirty) && loginEmailField.invalid && loginEmailField.errors?.['required']" style="margin-top: 5px;">
+          <small >Email field is required</small>
+        </div>
+        <div class="error text-danger " *ngIf="(loginEmailField.touched || loginEmailField.dirty) && loginEmailField.invalid && loginEmailField.errors?.['pattern']">
+          <small>Provide correct email</small>
+        </div>
+
+        <input type="password" placeholder="Enter Password" name="password" id="psw" [(ngModel)]="loginObj.password" #loginPasswordField="ngModel" minlength="4" required>
+        <div class="error text-danger " *ngIf="(loginEmailField.touched || loginEmailField.dirty) && loginPasswordField.invalid && loginPasswordField.errors?.['required']" style="margin-bottom: -1;">
+          <small >Password is required</small>
+        </div>
+        <div class="error text-danger " *ngIf="(loginEmailField.touched || loginEmailField.dirty) && loginPasswordField.invalid && loginPasswordField.errors?.['minlength']">
+          <small>Password should be 4 characters long</small>
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+      </form>
+
     </div>
+
   </div>
 
   <div class = "animation-line">

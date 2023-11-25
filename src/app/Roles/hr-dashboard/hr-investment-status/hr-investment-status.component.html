@@ -8,18 +8,19 @@
   
   <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav">
-      <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
+      <img class="avatar mat-elevation-z8" src="https://img.freepik.com/premium-vector/user-interface-icon-cartoon-style-illustration_161751-2838.jpg?size=338&ext=jpg&ga=GA1.1.1826414947.1699747200&semt=ais" />
       <h4 class="name"></h4>
+      <h4 class="name">{{EmpObj.name}}</h4>
       <p class="designation">Human Resources</p>
   
       <mat-divider></mat-divider>
   
-      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrDashboard">
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrDashboard" color="white">
         <!-- <mat-icon>home</mat-icon> -->
         <span>Home</span>
       </button>
   
-      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/BulkUpload">
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/BulkUpload" color="white">
         <!-- <span class="icon-container">
           <mat-icon>person</mat-icon>
         </span> -->
@@ -27,14 +28,14 @@
         <span class="menu-button-text">Upload Data</span>
       </button>
   
-      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrInvestmentStatus">
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrInvestmentStatus" color="white">
         <!-- <mat-icon>info</mat-icon> -->
         <span>Investments</span>
       </button>
   
       <mat-divider></mat-divider>
   
-      <button mat-button class="menu-button" routerLink="/">
+      <button mat-button class="menu-button" routerLink="/" color="white">
         <!-- <mat-icon>help</mat-icon> -->
         <span>Logout</span>
       </button>
@@ -43,6 +44,10 @@
     <mat-sidenav-content>
       <div class="content mat-elevation-z8">
         <!-- Plan Status -->
+        <!-- <h4>
+          <b>Welcome {{ EmpObj.name }}!</b>
+        </h4> -->
+        
 
         <h3><b>Plans Enrolled By Employees</b></h3>
 
@@ -78,7 +83,7 @@
                                 <td><p><span class="badge bg-danger text-light">{{request.statusName}}</span></p></td>
                             </ng-container>
                         <td>
-                            <button (click)="takeAction(request.employeeID, request.planID, request.employeeInvestmentID)">View</button>
+                            <button (click)="takeAction(request.employeeID, request.planID, request.employeeInvestmentID, request.duration)">View</button>
                         </td>
                         
                     </tr>

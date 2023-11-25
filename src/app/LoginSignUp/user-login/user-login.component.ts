@@ -40,7 +40,7 @@ export class UserLoginComponent implements OnInit {
 
   onSignUp() {
     debugger
-    //this.signupObj.roleID = 3;// hardcoding the role as employee for know
+    this.signupObj.roleID = 3;// hardcoding the role as employee for know
     console.log(this.signupObj);
     console.log(this.signupUsers);
 

@@ -60,7 +60,9 @@ mat-sidenav-container{
 }
 
 .menu-button:hover {
-  background-color: #555; /* Button background color on hover */
+  /* background-color: #555;  */
+  /* Button background color on hover */
+  transform: scale(1.1); 
 }
 
 .menu-button .menu-button-text {
@@ -125,6 +127,15 @@ mat-divider{
   border-radius: 8px;
   opacity: 0;
   animation: fade-in-out 3s ease-in-out;
+  }
+
+  .error{
+    display: inline-block;
+    margin-left: 50px;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    
   }
  
   @keyframes fade-in-out {

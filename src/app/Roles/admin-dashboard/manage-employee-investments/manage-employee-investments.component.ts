@@ -16,6 +16,19 @@ export class ManageEmployeeInvestmentsComponent implements OnInit{
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  EmpObj: any = {
+    employeeID: '',
+    name: '',
+    email: '',
+    age: '',
+    gender: '',
+    department: '',
+    contactDetails: '',
+    salary: '',
+  };
+
+  Employess: any[] = [];
+
   investmentPlans: any[] = [];
   isFormVisible: boolean = false;
   newPlanName: string = '';
@@ -39,6 +52,17 @@ export class ManageEmployeeInvestmentsComponent implements OnInit{
 
   ngOnInit(): void {
     this.fetchInvestmentPlans();
+
+    this.roleservice.getEmployeeData().subscribe((result) =>{
+      this.Employess = result;
+
+      if(this.Employess != null){
+        const employee = this.Employess.find((e) => e.email == localStorage.getItem('email'));
+        this.EmpObj = employee;
+        console.log(employee);
+      }
+      
+    });
   }
 
   fetchInvestmentPlans(): void {
@@ -73,6 +97,20 @@ export class ManageEmployeeInvestmentsComponent implements OnInit{
     );
 
     this.isFormVisible = false;
+  }
+
+  deletePlan(planID: number):void{
+    debugger
+    this.http.delete(`http://localhost:52830/api/InvestmentPlans/${planID}`).subscribe(
+      () =>{
+        this.investmentPlans = this.investmentPlans.filter((planID) => planID.planID !== planID);
+        this.toastr.success('Plan deleted successfully');
+      },
+      (error) =>{
+        this.toastr.error('Error');
+      }
+    );
+    this.fetchInvestmentPlans();
   }
 
 

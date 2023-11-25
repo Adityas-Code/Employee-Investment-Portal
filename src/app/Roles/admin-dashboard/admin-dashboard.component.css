@@ -65,7 +65,8 @@ mat-sidenav-container{
 }
 
 .menu-button:hover {
-  background-color: #555; /* Button background color on hover */
+  /* background-color: #555;  */
+  transform: scale(1.1);
 }
 
 .menu-button .menu-button-text {
@@ -155,4 +156,31 @@ mat-divider{
   .status-pending {
     color: grey; /* Use orange for pending status */
     font-weight: bold;
+  }
+
+  .welcome-box {
+    background-image: url('b.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 200px; /* Adjust the height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    color:aliceblue;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+ 
+  .welcome-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+ 
+  .welcome-content h1 {
+    font-size: 24px;
+    color: aliceblue;
+ 
   }

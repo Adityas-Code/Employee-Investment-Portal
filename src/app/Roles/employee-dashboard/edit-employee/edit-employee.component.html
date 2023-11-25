@@ -9,18 +9,18 @@
 
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav">
-    <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
+    <img class="avatar mat-elevation-z8" src="https://img.freepik.com/premium-vector/user-interface-icon-cartoon-style-illustration_161751-2838.jpg?size=338&ext=jpg&ga=GA1.1.1826414947.1699747200&semt=ais" />
     <h4 class="name">{{EmpObj.name}}</h4>
     <p class="designation">Employee</p>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/EmployeeDashboard">
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/EmployeeDashboard" color="white">
       <!-- <mat-icon>home</mat-icon> -->
       <span>Home</span>
     </button>
 
-    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/EditEmployee">
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/EditEmployee" color="white">
       <!-- <span class="icon-container">
         <mat-icon>person</mat-icon>
       </span> -->
@@ -28,14 +28,14 @@
       <span class="menu-button-text">Edit Details</span>
     </button>
 
-    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/InvestmentPlan">
+    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/InvestmentPlan" color="white">
       <!-- <mat-icon>info</mat-icon> -->
       <span>Investments</span>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="/">
+    <button mat-button class="menu-button" routerLink="/" color="white">
       <!-- <mat-icon>help</mat-icon> -->
       <span>Logout</span>
     </button>
@@ -67,24 +67,82 @@
               </div>
       
               <ng-template #editSection class="sliding">
+
                 <div>
-                  <p>Name: <input type="text" [(ngModel)]="EmpObj.name" /></p>
-                  <p>Email: <input type="text" [(ngModel)]="EmpObj.email" /></p>
-                  <p>Age: <input type="text" [(ngModel)]="EmpObj.age" /></p>
-                  <p>Gender: <input type="text" [(ngModel)]="EmpObj.gender" /></p>
-                  <p>
-                    Department: <input type="text" [(ngModel)]="EmpObj.department" />
-                  </p>
-                  <p>
-                    Contact Details:
-                    <input type="text" [(ngModel)]="EmpObj.contactDetails" />
-                  </p>
-                  <p>Grade: <input type="text" [(ngModel)]="EmpObj.grade" /></p>
-                  <p>Salary: <input type="text" [(ngModel)]="EmpObj.salary" /></p>
+                  <p>Name: <input type="text" [(ngModel)]="EmpObj.name" #NameField="ngModel" pattern="[A-Za-z ]*" required></p>
+                  <div class="error text-danger " *ngIf="(NameField.touched || NameField.dirty) && NameField.invalid && NameField.errors?.['required']" style="margin-top: 5px;">
+                    <small >Name is required</small>
+                  </div>
+                  <div class="error text-danger " *ngIf="(NameField.touched || NameField.dirty) && NameField.invalid && NameField.errors?.['pattern']">
+                    <small>Provide a vaid name (only alphabets and Space are allowed)</small>
+                  </div>
+
+
+                  <p>Email: <input type="text" [(ngModel)]="EmpObj.email" #EmailField="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></p>
+                  <div class="error text-danger " *ngIf="(EmailField.touched || EmailField.dirty) && EmailField.invalid && EmailField.errors?.['required']" style="margin-top: 5px;">
+                    <small >Email is required</small>
+                  </div>
+                  <div class="error text-danger " *ngIf="(EmailField.touched || EmailField.dirty) && EmailField.invalid && EmailField.errors?.['pattern']">
+                    <small>Provide correct email</small>
+                  </div>
+                  
+                  
+                  <p>Age: <input type="text" [(ngModel)]="EmpObj.age" #AgeField="ngModel" pattern="[1-9][0-9]*" required></p>
+                  <div class="error text-danger " *ngIf="(AgeField.touched || AgeField.dirty) && AgeField.invalid && AgeField.errors?.['required']" style="margin-top: 5px;">
+                    <small >Age is required</small>
+                  </div>
+                  <div class="error text-danger " *ngIf="(AgeField.touched || AgeField.dirty) && AgeField.invalid && AgeField.errors?.['pattern']">
+                    <small>Provide a valid age</small>
+                  </div>
+
+                  <p>Gender: <input type="text" [(ngModel)]="EmpObj.gender" #GenderField="ngModel" pattern="[A-Za-z ]*" required></p>
+                  <div class="error text-danger " *ngIf="(GenderField.touched || GenderField.dirty) && GenderField.invalid && GenderField.errors?.['required']" style="margin-top: 5px;">
+                    <small >Gender is required</small>
+                  </div>
+                  <div class="error text-danger " *ngIf="(GenderField.touched || GenderField.dirty) && GenderField.invalid && GenderField.errors?.['pattern']">
+                    <small>Provide a valid Gender</small>
+                  </div>
+
+                  <p>Department: <input type="text" [(ngModel)]="EmpObj.department" #DepartmentField="ngModel" pattern="[A-Za-z ]*" required></p>
+                  <div class="error text-danger " *ngIf="(DepartmentField.touched || DepartmentField.dirty) && DepartmentField.invalid && DepartmentField.errors?.['required']" style="margin-top: 5px;">
+                    <small >Department is required</small>
+                  </div>
+                  <div class="error text-danger " *ngIf="(DepartmentField.touched || DepartmentField.dirty) && DepartmentField.invalid && DepartmentField.errors?.['pattern']">
+                    <small>Provide a valid Department</small>
+                  </div>
+
+
+                  <p>Contact Details: <input type="text" [(ngModel)]="EmpObj.contactDetails" #ContactField="ngModel" pattern="[0-9]{10}" required></p>
+                  <div class="error text-danger " *ngIf="(ContactField.touched || ContactField.dirty) && ContactField.invalid && ContactField.errors?.['required']" style="margin-top: 5px;">
+                    <small >Contact number is required</small>
+                  </div>
+                  <div class="error text-danger " *ngIf="(ContactField.touched || ContactField.dirty) && ContactField.invalid && ContactField.errors?.['pattern']">
+                    <small>Provide a valid contact number</small>
+                  </div>
+                  
+
+
+                  <p>Grade: <input type="text" [(ngModel)]="EmpObj.grade" #GradeField="ngModel" pattern="[A-Za-z ]*" required></p>
+                  <div class="error text-danger " *ngIf="(GradeField.touched || GradeField.dirty) && GradeField.invalid && GradeField.errors?.['required']" style="margin-top: 5px;">
+                    <small >Grade is required</small>
+                  </div>
+                  <div class="error text-danger " *ngIf="(GradeField.touched || GradeField.dirty) && GradeField.invalid && GradeField.errors?.['pattern']">
+                    <small>Provide a valid Grade</small>
+                  </div>
+
+                  <p>Salary: <input type="text" [(ngModel)]="EmpObj.salary" #SalaryField="ngModel" pattern="[0-9]+(\.[0-9]+)?"></p>
+                  <div class="error text-danger " *ngIf="(SalaryField.touched || SalaryField.dirty) && SalaryField.invalid && SalaryField.errors?.['required']" style="margin-top: 5px;">
+                    <small >Salary is required</small>
+                  </div>
+                  <div class="error text-danger " *ngIf="(SalaryField.touched || SalaryField.dirty) && SalaryField.invalid && SalaryField.errors?.['pattern']">
+                    <small>Provide a valid number</small>
+                  </div>
+
                   <button class="btn btn-success" (click)="updateEmployeeDetails()">
                     Save
                   </button>
                 </div>
+
               </ng-template>
               <br>
               <div *ngIf="showNotification" class="notification fade-in-out">

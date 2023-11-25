@@ -42,7 +42,7 @@ const routes :Routes = [
   {path:'InvestmentPlan', component:InvestmentPlanComponent},
   {path:'BulkUpload', component:BulkUploadComponent},
   {path:'HrInvestmentStatus', component:HrInvestmentStatusComponent},
-  {path:'EditEmployeePlan/:employeeID/:planID/:employeeInvestmentID', component:EditEmployeePlanComponent},
+  {path:'EditEmployeePlan/:employeeID/:planID/:employeeInvestmentID/:duration', component:EditEmployeePlanComponent},
   {path:'EditEmployee', component:EditEmployeeComponent},
   {path:'ManageUserAndRoles', component:ManageUserAndRolesComponent},
   {path:'ManageEmployeeInvestments', component:ManageEmployeeInvestmentsComponent},

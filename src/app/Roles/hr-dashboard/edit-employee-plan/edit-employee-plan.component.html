@@ -6,20 +6,20 @@
     
   </mat-toolbar>
   
-  <mat-sidenav-container>
+  <mat-sidenav-container >
     <mat-sidenav #sidenav="matSidenav">
-      <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
+      <img class="avatar mat-elevation-z8" src="https://img.freepik.com/premium-vector/user-interface-icon-cartoon-style-illustration_161751-2838.jpg?size=338&ext=jpg&ga=GA1.1.1826414947.1699747200&semt=ais" />
       <h4 class="name"></h4>
       <p class="designation">Human Resources</p>
   
       <mat-divider></mat-divider>
   
-      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrDashboard">
+      <button mat-button class="menu-button " routerLinkActive="active" routerLink="/HrDashboard" color="white">
         <!-- <mat-icon>home</mat-icon> -->
         <span>Home</span>
       </button>
   
-      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/BulkUpload">
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/BulkUpload" color="white">
         <!-- <span class="icon-container">
           <mat-icon>person</mat-icon>
         </span> -->
@@ -27,14 +27,14 @@
         <span class="menu-button-text">Upload Data</span>
       </button>
   
-      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrInvestmentStatus">
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="/HrInvestmentStatus" color="white">
         <!-- <mat-icon>info</mat-icon> -->
         <span>Investments</span>
       </button>
   
       <mat-divider></mat-divider>
   
-      <button mat-button class="menu-button" routerLink="/">
+      <button mat-button class="menu-button" routerLink="/" color="white">
         <!-- <mat-icon>help</mat-icon> -->
         <span>Logout</span>
       </button>
@@ -60,8 +60,11 @@
                         <p>Grade: {{this.employee.grade}}</p>
                         <p>Salary: {{this.employee.salary}}</p>
                         <p>Plan Name: {{this.planDetails.planName}}</p>
-                        <p>Start Date: {{this.employeeInvestment.startDate}}</p>
-                        <p>End Date: {{this.employeeInvestment.endDate}}</p>
+                        <div *ngIf = "employeeInvestment.statusID !== 2">
+                          <p>Start Date: {{formatDate(this.employeeInvestment.startDate)}}</p>
+                          <p>End Date: {{formatDate(this.employeeInvestment.endDate)}}</p>
+                        </div>
+                        
                         
                         <button class="btn btn-primary btn1" (click)="approveInvestmentPlan()">Approve</button> <!-- Add the btn class -->
                         

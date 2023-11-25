@@ -1,41 +1,65 @@
-
 <mat-toolbar class="mat-elevation-z8">
-  <button mat-icon-button *ngIf="sidenav.mode =='over'" (click)="sidenav.toggle()">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode == 'over'"
+    (click)="sidenav.toggle()"
+  >
     <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
     <mat-icon *ngIf="sidenav.opened">close</mat-icon>
   </button>
-  
 </mat-toolbar>
 
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav">
-    <img class="avatar mat-elevation-z8" src="C:\Users\u1306023\Downloads\Course\Project\download.png" />
-    <h4 class="name"></h4>
+    <!-- <img class="avatar mat-elevation-z8" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" /> -->
+    <img
+      class="avatar mat-elevation-z8"
+      src="https://img.freepik.com/premium-vector/user-interface-icon-cartoon-style-illustration_161751-2838.jpg?size=338&ext=jpg&ga=GA1.1.1826414947.1699747200&semt=ais"
+    />
+    <h4 class="name">{{EmpObj.name}}</h4>
     <p class="designation">Admin</p>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/AdminDashboard">
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/AdminDashboard"
+      color="white"
+    >
       <!-- <mat-icon>home</mat-icon> -->
       <span>Home</span>
     </button>
 
-    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/ManageUserAndRoles">
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/ManageUserAndRoles"
+      color="white"
+    >
       <!-- <span class="icon-container">
         <mat-icon>person</mat-icon>
       </span> -->
-      
+
       <span class="menu-button-text">Manage Users</span>
     </button>
 
-    <button mat-button class="menu-button" routerLinkActive="active" routerLink="/ManageEmployeeInvestments">
+    <button
+      mat-button
+      class="menu-button"
+      routerLinkActive="active"
+      routerLink="/ManageEmployeeInvestments"
+      color="white"
+    >
       <!-- <mat-icon>info</mat-icon> -->
       <span>Investments</span>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="/">
+    <button mat-button class="menu-button" routerLink="/" color="white">
       <!-- <mat-icon>help</mat-icon> -->
       <span>Logout</span>
     </button>
@@ -45,18 +69,123 @@
     <div class="content mat-elevation-z8">
       <!-- Plan Status -->
 
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+      <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+      <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+      <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
-      
+      <h4>
+        <b>Welcome {{ EmpObj.name }}!</b>
+      </h4>
 
-      
+      <mat-divider></mat-divider>
+
+      <div
+        class="grey-bg container-fluid"
+        style="background: hsla(36, 45%, 98%, 1)"
+      >
+        <section id="minimal-statistics">
+          <div class="welcome-box" color="white"></div>
+
+          <div class="row">
+
+            <div class="col-xl-3 col-sm-6 col-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h3 class="danger">{{ numberOfEmployees }}</h3>
+                        <span>Total Employees</span>
+                      </div>
+
+                      <div class="align-self-center">
+                        <i
+                          class="icon-rocket danger font-large-2 float-right"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-6 col-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h3 class="success">{{ numberOfLogins }}</h3>
+                        <span>Active users</span>
+                      </div>
+
+                      <div class="align-self-center">
+                        <i
+                          class="icon-user success font-large-2 float-right"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-6 col-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h3 class="warning">{{ numberOfEnrollments }}</h3>
+                        <span>Enrollments</span>
+                      </div>
+
+                      <div class="align-self-center">
+                        <i
+                          class="icon-pie-chart warning font-large-2 float-right"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-6 col-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h3 class="primary">{{ activePlans }}</h3>
+                        <span>Active Plans</span>
+                      </div>
+
+                      <div class="align-self-center">
+                        <i
+                          class="icon-wallet support primary font-large-2"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </section>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
 <!--asasasasa-->
-
-
-
 
 <!-- <div>
     <h2>Available Investment Plans</h2>
